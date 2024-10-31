@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.20.4
-Date: ????
+Version: 2.0.0
+Date: 10. 30. 2024
   Changes:
+    - Compatability for Space Age (Factorio Version 2.0)
+  Info:
+    - Krastorio 2 and Bob's Mods have not been updated to 2.0, therefore the unique upgrades usually in this mod no longer work.
 ---------------------------------------------------------------------------------------------------
 Version: 0.20.3
 Date: 8. 28. 2020

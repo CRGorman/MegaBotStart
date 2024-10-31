@@ -2,7 +2,7 @@ local ItemPrototypes = {
 	Armor = "power-armor-mk2",
 	Robot = "construction-robot",
 	Fuel = "",
-	Reactor = "fusion-reactor-equipment", --4x4
+	Reactor = "fission-reactor-equipment", --4x4
 	Exoskeleton = "exoskeleton-equipment", --2x4
 	Shield = "energy-shield-mk2-equipment", --2x2
 	Roboport = "personal-roboport-mk2-equipment", --2x2
@@ -38,7 +38,7 @@ end
 
 --Freeplay
 script.on_init(function(event)
-	if game.active_mods["Krastorio2"] then
+	if script.active_mods["Krastorio2"] then
 		--Krastorio, mk 4, 12x12
 		ItemPrototypes["Armor"] = "power-armor-mk4"
 		--Reactors require fuel
@@ -53,7 +53,7 @@ script.on_init(function(event)
 			{Name = ItemPrototypes["Exoskeleton"], Count = 4},
 		}
 
-	elseif game.active_mods["bobwarfare"] then
+	elseif script.active_mods["bobwarfare"] then
 		--Bob's Warfare, mk 5, 16x16 grid
 		ItemPrototypes["Armor"] = "bob-power-armor-mk5"
 
@@ -69,7 +69,7 @@ script.on_init(function(event)
 		}
 	end
 
-	Items = {{ItemPrototypes["Robot"], settings.global["starting robot count"].value}}
+	Items = {{ItemPrototypes["Robot"], settings.global["starting-robot-count"].value}}
 
 	if not (ItemPrototypes["Fuel"] == "") then
 		table.insert(Items, {ItemPrototypes["Fuel"], 80})
@@ -77,9 +77,9 @@ script.on_init(function(event)
 
 	
 
-	if not(settings.global["faster robots"].value == 0) then
+	if not(settings.global["faster-robots"].value == 0) then
 		for k,v in pairs(game.forces) do
-			for z = 1, settings.global["faster robots"].value, 1 do
+			for z = 1, settings.global["faster-robots"].value, 1 do
 				v.technologies["worker-robots-speed-" .. tostring(z)].researched = true
 			end
 		end
