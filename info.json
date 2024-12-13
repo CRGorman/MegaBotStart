@@ -1,6 +1,6 @@
 {
     "name": "MegaBotStart",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "factorio_version": "2.0",
     "dependencies": [ "base >= 2.0", "? Krastorio2", "? bobwarfare", "? bobequipment", "? boblogistics"  ],
     "title": "Mega Bot Start",

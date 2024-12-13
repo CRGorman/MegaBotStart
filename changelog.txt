@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.1
+Date: 12. 12. 2024
+  Bugfixes:
+    - Cutscenes past the freeplay start should no longer crash the mod
+  Changes:
+    - Added storage data to prevent armor overwriting itself
+---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 10. 30. 2024
   Changes:
