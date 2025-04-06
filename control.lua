@@ -22,13 +22,13 @@ local ArmorModules = {
 
 --Personal Equipment gives upgraded options, lets use a few.
 if script.active_mods["bobequipment"] then
-	ItemPrototypes["Reactor"] = "fusion-reactor-equipment-4"           --Reactor 4 4x4
-	ItemPrototypes["Shield"] = "energy-shield-mk6-equipment"           --Shield 6 2x2
-	ItemPrototypes["Roboport"] = "personal-roboport-mk4-equipment"     --Roboport 4 2x2
-	ItemPrototypes["Battery"] = "battery-mk6-equipment"                --Battery 6 1x2
-	ItemPrototypes["LaserDefense"] = "personal-laser-defense-equipment-6" --Laser Defense 6 2x2
-	ItemPrototypes["Exoskeleton"] = "exoskeleton-equipment-3"          --Exoskeleton 3 2x4
-	ItemPrototypes["Nightvision"] = "night-vision-equipment-3"         --2x2
+	ItemPrototypes["Reactor"] = "bob-fission-reactor-equipment-4"             --Reactor 4 4x4
+	ItemPrototypes["Shield"] = "bob-energy-shield-mk6-equipment"              --Shield 6 2x2
+	ItemPrototypes["Roboport"] = "bob-personal-roboport-mk4-equipment"        --Roboport 4 2x2
+	ItemPrototypes["Battery"] = "bob-battery-mk6-equipment"                   --Battery 6 1x2
+	ItemPrototypes["LaserDefense"] = "bob-personal-laser-defense-equipment-6" --Laser Defense 6 2x2
+	ItemPrototypes["Exoskeleton"] = "bob-exoskeleton-equipment-3"             --Exoskeleton 3 2x4
+	ItemPrototypes["Nightvision"] = "bob-night-vision-equipment-3"            --2x2
 end
 
 --Logistics gives us upgraded bots
@@ -52,19 +52,19 @@ script.on_init(function(event)
 			{ Name = ItemPrototypes["Nightvision"], Count = 1 },
 			{ Name = ItemPrototypes["Exoskeleton"], Count = 4 },
 		}
-	elseif script.active_mods["bobwarfare"] then
-		--Bob's Warfare, mk 5, 16x16 grid
+	elseif script.active_mods["bobequipment"] then
+		--Bob's Warfare, mk 5, 11x12 grid
 		ItemPrototypes["Armor"] = "bob-power-armor-mk5"
 
 		ArmorModules = {
-			{ Name = ItemPrototypes["Reactor"],      Count = 8 },
+			{ Name = ItemPrototypes["Reactor"],      Count = 4 },
 			{ Name = ItemPrototypes["Roboport"],     Count = 4 },
-			{ Name = ItemPrototypes["Shield"],       Count = 4 },
-			{ Name = ItemPrototypes["Battery"],      Count = 2 },
-			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },
+			{ Name = ItemPrototypes["Exoskeleton"],  Count = 2 },
+			{ Name = ItemPrototypes["Shield"],       Count = 3 },
 			{ Name = ItemPrototypes["Battery"],      Count = 4 },
-			{ Name = ItemPrototypes["Exoskeleton"],  Count = 5 },
-			{ Name = ItemPrototypes["LaserDefense"], Count = 16 },
+			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },			
+			{ Name = ItemPrototypes["LaserDefense"], Count = 2 },
+			{ Name = ItemPrototypes["Battery"],      Count = 2 },
 		}
 	end
 
