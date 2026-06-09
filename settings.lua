@@ -19,10 +19,11 @@ data:extend({
     },
     {
         type = "string-setting",
-        name = "quality",
+        name = "mbs-quality",
         setting_type = "runtime-global",
         default_value = "normal",
         allowed_values = { "normal", "uncommon", "rare", "epic", "legendary" },
+        hidden = not (mods["quality"] and true or false),
         order = "03"
     },
     {
