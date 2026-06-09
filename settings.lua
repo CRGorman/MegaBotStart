@@ -18,15 +18,6 @@ data:extend({
         order = "02"
     },
     {
-        type = "string-setting",
-        name = "mbs-quality",
-        setting_type = "runtime-global",
-        default_value = "normal",
-        allowed_values = { "normal", "uncommon", "rare", "epic", "legendary" },
-        hidden = not (mods["quality"] and true or false),
-        order = "03"
-    },
-    {
         type = "bool-setting",
         name = "shield-start",
         setting_type = "runtime-global",
@@ -41,3 +32,17 @@ data:extend({
         order = "05"
     }
 })
+
+local has_quality = mods["quality"] and true or false
+data:extend{
+  -- Other settings
+  {
+    type = "string-setting",
+    name = "mbs-quality",
+    setting_type = "runtime-global",
+    default_value = "normal",
+    allowed_values = has_quality and { "normal", "uncommon", "rare", "epic", "legendary" } or {"normal"},
+    hidden = not has_quality,
+    order = "03"
+  },
+}

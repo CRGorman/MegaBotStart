@@ -17,18 +17,16 @@ local ArmorModules = {
 	{ Name = ItemPrototypes["Reactor"],  Count = 4 },
 	{ Name = ItemPrototypes["Roboport"], Count = 4 },
 	{ Name = ItemPrototypes["Battery"],  Count = 2 },
-	{ Name = ItemPrototypes["Shield"],   Count = 4 },
+	{ Name = ItemPrototypes["Shield"],   Count = (settings.global["shield-start"].value and 4 or 0) },
+	{ Name = ItemPrototypes["LaserDefense"], Count = (settings.global["defense-start"].value and 4 or 0) },
 }
 
-local mbs_Quality = "normal"
-if (script.active_mods["quality"]) then
-	local quality_setting = settings.global["mbs-quality"].value
-end
+local mbs_Quality = settings.global["mbs-quality"].value
 
 --Space Age options
 if script.active_mods["space-age"] then
 	ItemPrototypes["Armor"] = "mech-armor"              --Mech Armor, 10x12 grid
-	ItemPrototypes["Reactor"] = "fusion-reactor-equipment" --Fusion Reactor, 4x4			
+	ItemPrototypes["Reactor"] = "fusion-reactor-equipment" --Fusion Reactor, 4x4
 	ArmorModules = {
 		{ Name = ItemPrototypes["Reactor"],      Count = 4 },
 		{ Name = ItemPrototypes["Roboport"],     Count = 4 },
@@ -104,14 +102,13 @@ end
 
 --Freeplay
 script.on_init(function(event)
-
-if not (settings.global["faster-robots"].value == 0) then
-	for k, v in pairs(game.forces) do
-		for z = 1, settings.global["faster-robots"].value, 1 do
-			v.technologies["worker-robots-speed-" .. tostring(z)].researched = true
+	if not (settings.global["faster-robots"].value == 0) then
+		for k, v in pairs(game.forces) do
+			for z = 1, settings.global["faster-robots"].value, 1 do
+				v.technologies["worker-robots-speed-" .. tostring(z)].researched = true
+			end
 		end
 	end
-end
 
 	storage.GivenArmor = storage.GivenArmor or {}
 	if (storage.GivenArmor == nil) then
