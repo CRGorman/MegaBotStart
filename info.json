@@ -1,11 +1,11 @@
 {
     "name": "MegaBotStart",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "factorio_version": "2.0",
     "dependencies": [ "base >= 2.0", "? Krastorio2", "? bobwarfare", "? bobequipment", "? boblogistics"  ],
     "title": "Mega Bot Start",
     "author": "ZeroSerenity",
     "contact": "",
     "homepage": "",
-    "description": "Start with power armor, personal roboports, construction robots, portable fusion reactors, batteries, and more. Krastorio 2 gives fuel. Bob's Warfare gives better armor, logistics gives fusion powered robots, personal equipment upgrades the module."
+    "description": "Start with power armor, personal roboports, construction robots, portable fusion reactors, batteries, and more. Space Age gives Mech Armor instead. Krastorio 2 gives fuel. Bob's Warfare gives better armor, logistics gives fusion powered robots, personal equipment upgrades the module."
 }

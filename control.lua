@@ -20,15 +20,23 @@ local ArmorModules = {
 	{ Name = ItemPrototypes["Shield"],   Count = 4 },
 }
 
+local Quality = "normal"
+
+--Space Age options
+if script.active_mods["space-age"] then
+	ItemPrototypes["Armor"] = "mech-armor"              --Mech Armor, 10x12 grid
+	ItemPrototypes["Reactor"] = "fusion-reactor-equipment" --Fusion Reactor, 4x4
+end
+
 --Personal Equipment gives upgraded options, lets use a few.
 if script.active_mods["bobequipment"] then
-	ItemPrototypes["Reactor"] = "bob-fission-reactor-equipment-4"             --Reactor 4 4x4
-	ItemPrototypes["Shield"] = "bob-energy-shield-mk6-equipment"              --Shield 6 2x2
-	ItemPrototypes["Roboport"] = "bob-personal-roboport-mk4-equipment"        --Roboport 4 2x2
-	ItemPrototypes["Battery"] = "bob-battery-mk6-equipment"                   --Battery 6 1x2
+	ItemPrototypes["Reactor"] = "bob-fission-reactor-equipment-4"          --Reactor 4 4x4
+	ItemPrototypes["Shield"] = "bob-energy-shield-mk6-equipment"           --Shield 6 2x2
+	ItemPrototypes["Roboport"] = "bob-personal-roboport-mk4-equipment"     --Roboport 4 2x2
+	ItemPrototypes["Battery"] = "bob-battery-mk5-equipment"                --Battery 5 1x2
 	ItemPrototypes["LaserDefense"] = "bob-personal-laser-defense-equipment-6" --Laser Defense 6 2x2
-	ItemPrototypes["Exoskeleton"] = "bob-exoskeleton-equipment-3"             --Exoskeleton 3 2x4
-	ItemPrototypes["Nightvision"] = "bob-night-vision-equipment-3"            --2x2
+	ItemPrototypes["Exoskeleton"] = "bob-exoskeleton-equipment-3"          --Exoskeleton 3 2x4
+	ItemPrototypes["Nightvision"] = "bob-night-vision-equipment-3"         --2x2
 end
 
 --Logistics gives us upgraded bots
@@ -36,21 +44,29 @@ if script.active_mods["boblogistics"] then
 	ItemPrototypes["Robot"] = "bob-construction-robot-5"
 end
 
+if script.active_mods["Krastorio2"] then
+	ItemPrototypes["Armor"] = "kr-power-armor-mk4"             --Mk 4 Power Armor, 12x12 grid
+	ItemPrototypes["Reactor"] = "kr-antimatter-reactor-equipment" --Antimatter Reactor, 4x4
+	--Reactors require fuel
+	ItemPrototypes["Fuel"] = "kr-charged-antimatter-fuel-cell"
+	ItemPrototypes["Shield"] = "kr-energy-shield-mk4-equipment"             --Shield 4 2x2
+	ItemPrototypes["Battery"] = "kr-battery-mk3-equipment"                  --Battery 3 1x2
+	ItemPrototypes["LaserDefense"] = "kr-personal-laser-defense-mk4-equipment" --Laser Defense 4 2x2
+	ItemPrototypes["Exoskeleton"] = "kr-superior-exoskeleton-equipment"     --Exoskeleton 3 2x4
+	ItemPrototypes["Nightvision"] = "kr-superior-night-vision-equipment"    --1x1
+end
+
 --Freeplay
 script.on_init(function(event)
 	if script.active_mods["Krastorio2"] then
-		--Krastorio, mk 4, 12x12
-		ItemPrototypes["Armor"] = "power-armor-mk4"
-		--Reactors require fuel
-		ItemPrototypes["Fuel"] = "dt-fuel"
-
 		ArmorModules = {
-			{ Name = ItemPrototypes["Reactor"],     Count = 4 },
-			{ Name = ItemPrototypes["Roboport"],    Count = 4 },
-			{ Name = ItemPrototypes["Shield"],      Count = 4 },
-			{ Name = ItemPrototypes["Battery"],     Count = 2 },
-			{ Name = ItemPrototypes["Nightvision"], Count = 1 },
-			{ Name = ItemPrototypes["Exoskeleton"], Count = 4 },
+			{ Name = ItemPrototypes["Reactor"],      Count = 4 },
+			{ Name = ItemPrototypes["Roboport"],     Count = 4 },
+			{ Name = ItemPrototypes["Shield"],       Count = (settings.global["shield-start"].value and 4 or 0) },
+			{ Name = ItemPrototypes["Battery"],      Count = 2 },
+			{ Name = ItemPrototypes["Exoskeleton"],  Count = 4 },
+			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },
+			{ Name = ItemPrototypes["LaserDefense"], Count = (settings.global["defense-start"].value and 2 or 0) },
 		}
 	elseif script.active_mods["bobequipment"] then
 		--Bob's Warfare, mk 5, 11x12 grid
@@ -60,11 +76,23 @@ script.on_init(function(event)
 			{ Name = ItemPrototypes["Reactor"],      Count = 4 },
 			{ Name = ItemPrototypes["Roboport"],     Count = 4 },
 			{ Name = ItemPrototypes["Exoskeleton"],  Count = 2 },
-			{ Name = ItemPrototypes["Shield"],       Count = 3 },
+			{ Name = ItemPrototypes["Shield"],       Count = (settings.global["shield-start"].value and 3 or 0) },
 			{ Name = ItemPrototypes["Battery"],      Count = 4 },
-			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },			
-			{ Name = ItemPrototypes["LaserDefense"], Count = 2 },
+			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },
+			{ Name = ItemPrototypes["LaserDefense"], Count = (settings.global["defense-start"].value and 2 or 0) },
 			{ Name = ItemPrototypes["Battery"],      Count = 2 },
+		}
+	elseif script.active_mods["space-age"] then
+		--Space Age, Mech Armor, 10x12 grid
+		ArmorModules = {
+			{ Name = ItemPrototypes["Reactor"],      Count = 4 },
+			{ Name = ItemPrototypes["Roboport"],     Count = 4 },
+			{ Name = ItemPrototypes["Exoskeleton"],  Count = 1 },
+			{ Name = ItemPrototypes["Shield"],       Count = (settings.global["shield-start"].value and 4 or 0) },
+			{ Name = ItemPrototypes["Nightvision"],  Count = 1 },
+			{ Name = ItemPrototypes["Battery"],      Count = 6 },
+			{ Name = ItemPrototypes["LaserDefense"], Count = (settings.global["defense-start"].value and 4 or 0) },
+			{ Name = ItemPrototypes["Exoskeleton"],  Count = 2 }, --In case the two start options are off, fill in with extra exoskeletons to keep the same power level as the other sets.
 		}
 	end
 
@@ -74,8 +102,6 @@ script.on_init(function(event)
 		table.insert(Items, { ItemPrototypes["Fuel"], 80 })
 	end
 
-
-
 	if not (settings.global["faster-robots"].value == 0) then
 		for k, v in pairs(game.forces) do
 			for z = 1, settings.global["faster-robots"].value, 1 do
@@ -83,13 +109,16 @@ script.on_init(function(event)
 			end
 		end
 	end
-	
+
+	if (script.active_mods["quality"]) then
+		Quality = settings.global["quality"].value
+	end
+
 	storage.GivenArmor = storage.GivenArmor or {}
 	if (storage.GivenArmor == nil) then
 		storage.GivenArmor = {}
 		print("test")
 	end
-
 end)
 
 function EquipArmor(event)
@@ -111,16 +140,16 @@ function EquipArmor(event)
 			PlayerInventory.remove(CurrentArmor);
 		end
 		local n = 0
-		n = ArmorInventory.insert { name = ItemPrototypes["Armor"], count = 1 }
+		n = ArmorInventory.insert { name = ItemPrototypes["Armor"], count = 1, quality = Quality }
 		if (n > 0) then -- we actually equipped the armor
 			local grid = ArmorInventory[1].grid
 			for i, module in pairs(ArmorModules) do
 				for y = 1, module.Count, 1 do
-					grid.put({ name = module.Name })
+					grid.put({ name = module.Name, quality = Quality })
 				end
 			end
 		end
-		
+
 		--Now mark the player as given their tools
 		storage.GivenArmor[game.players[event.player_index].name] = true
 	end
@@ -143,6 +172,13 @@ end)
 
 --Freeplay/Cutscene start
 script.on_event(defines.events.on_cutscene_cancelled, function(event)
+	if CheckStorage(event) then
+		EquipArmor(event)
+	end
+end)
+
+--Multiplayer start
+script.on_event(defines.events.on_player_joined_game, function(event)
 	if CheckStorage(event) then
 		EquipArmor(event)
 	end
