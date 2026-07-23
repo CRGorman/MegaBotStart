@@ -76,7 +76,11 @@ if script.active_mods["Krastorio2"] then
 	ItemPrototypes["Reactor"] = "kr-antimatter-reactor-equipment" --Antimatter Reactor, 4x4
 	--Reactors require fuel
 	ItemPrototypes["Fuel"] = "kr-charged-antimatter-fuel-cell"
-	ItemPrototypes["Shield"] = "kr-energy-shield-mk4-equipment"             --Shield 4 2x2
+	if not script.active_mods["space-exploration"] then --Space exploration uses a different shield, so we don't want to override it.
+		ItemPrototypes["Shield"] = "kr-energy-shield-mk4-equipment" --Shield 4 2x2
+	else
+		ItemPrototypes["Shield"] = "energy-shield-mk6-equipment" --Shield 6 2x2
+	end
 	ItemPrototypes["Battery"] = "kr-battery-mk3-equipment"                  --Battery 3 1x2
 	ItemPrototypes["LaserDefense"] = "kr-personal-laser-defense-mk4-equipment" --Laser Defense 4 2x2
 	ItemPrototypes["Exoskeleton"] = "kr-superior-exoskeleton-equipment"     --Exoskeleton 3 2x4

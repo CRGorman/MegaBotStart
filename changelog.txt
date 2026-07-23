@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 07. 23. 2026
+  Bugfixes:
+    - Space Exploration when played with Krastorio 2 should work again.
+---------------------------------------------------------------------------------------------------
+Version: 2.1.0
+Date: 06. 9. 2026
+  Features:
+    - Added a new setting to start with higher quality armor and equipment, with all five standard tiers of quality to choose from.
+    - Added settings to start with or without shields and personal laser defense equipment.
+    - Replaced given armor in Space Age with Mech Armor.
+  Bugfixes:
+    - Bob's Mods and Krastorio 2 unique upgrades should work again.
+  Changes:
+    - Code refactoring.
+---------------------------------------------------------------------------------------------------
 Version: 2.0.2
 Date: 04. 06. 2025
   Bugfixes:
@@ -14,7 +30,7 @@ Date: 12. 12. 2024
 Version: 2.0.0
 Date: 10. 30. 2024
   Changes:
-    - Compatability for Space Age (Factorio Version 2.0)
+    - Compatibility for Space Age (Factorio Version 2.0)
   Info:
     - Krastorio 2 and Bob's Mods have not been updated to 2.0, therefore the unique upgrades usually in this mod no longer work.
 ---------------------------------------------------------------------------------------------------
